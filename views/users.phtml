@@ -1,0 +1,27 @@
+<?php require_once('../models/user.php'); ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php include 'includes/head.inc'; ?>
+        <title>Default</title>
+    </head>
+    <?php include 'includes/header.inc'; ?>
+    <body>
+        <section class="box">
+            <?php Session::msg(); ?>
+            <div class="top-bar">
+                <h1>Usuários</h1>
+                <a href="new-user" class="btn btn-add"><i class="fa fa-plus"></i> Adicionar</a>
+            </div>
+            <table class="table">
+                <tr>
+                    <td>Nome</td>
+                    <td>E-mail</td>
+                    <td>Ação</td>
+                </tr>
+                <?php User::loadAll(); ?>
+            </table>
+        </section>
+        <?php include 'includes/scripts.inc'; ?>
+    </body>
+</html>

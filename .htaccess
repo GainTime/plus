@@ -1,0 +1,10 @@
+RewriteEngine on
+ErrorDocument 404 http://www.infojr.com.br/git-github
+ErrorDocument 403 http://www.infojr.com.br/git-github
+ErrorDocument 500 http://www.infojr.com.br/git-github
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.phtml -f
+RewriteRule ^(.*)$ $1.phtml
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
+Options -Indexes

@@ -1,0 +1,72 @@
+<?php require_once('../models/company.php'); ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php include 'includes/head.inc'; ?>
+        <title>Default</title>
+    </head>
+    <?php include 'includes/header.inc'; ?>
+    <body>
+        <?php $company = Company::one(1); ?>
+        <section class="box last">
+            <form id="aboutus" action="../controllers/company_controller<?php echo (!empty($company->id)) ? '?id='.$company->id : ''; ?>" class="s-form" method="POST" enctype="multipart/form-data">
+                <?php Session::msg(); ?>
+                <div class="top-bar cf">
+                    <h1><i class="fa fa-envelope"></i> Contato</h1>
+                    <button id="edit" onclick="editing('#aboutus', 'company')" type="button" class="btn wait to-right"><i class="icon-pencil"></i> Editar</button>
+                </div>
+                <div class="getme getme field has-label">
+                    <label for="company">Nome da Empresa</label>
+                    <input id="company" class="form-input" name="company" type="text" value="<?php echo (!empty($company->company)) ? $company->company : ''; ?>">
+                </div>
+                <div class="getme field has-label">
+                    <label for="description">Descrição da Empresa</label>
+                    <input id="description" class="form-input" name="description" type="text" value="<?php echo (!empty($company->description)) ? $company->description : ''; ?>">
+                </div>
+                <div class="getme field has-label">
+                    <label for="address">Endereço</label>
+                    <input id="address" class="form-input" name="address" type="text" value="<?php echo (!empty($company->address)) ? $company->address : ''; ?>">
+                </div>
+                <div class="getme field has-label">
+                    <label for="city">Bairro, cidade - Es(tado)</label>
+                    <input id="city" class="form-input" name="city" type="text" value="<?php echo (!empty($company->city)) ? $company->city : ''; ?>">
+                </div>
+                <div class="getme field has-label">
+                    <label for="map">Localização (Google Maps)</label>
+                    <input id="map" class="form-input" name="map" type="text" value="<?php echo (!empty($company->map)) ? $map->company : ''; ?>">
+                </div>
+                <div class="getme field has-label">
+                    <label for="room">Sala</label>
+                    <input class="form-input" name="room" type="text" value="<?php echo (!empty($company->room)) ? $company->room : ''; ?>">
+                </div>
+                <div class="getme field has-label">
+                    <label for="phone">Telefone</label>
+                    <input id="phone" class="form-input" name="phone" type="text" value="<?php echo (!empty($company->phone)) ? $company->phone : ''; ?>">
+                </div>
+                <div class="getme field has-label">
+                    <label for="email">E-mail</label>
+                    <input id="email" class="form-input" name="email" type="text" value="<?php echo (!empty($company->email)) ? $company->email : ''; ?>">
+                </div>
+                <div class="getme field has-label">
+                    <label for="facebook"><i class="fa fa-facebook-official"></i> Facebook</label>
+                    <input id="facebook" class="form-input" name="facebook" type="text" value="<?php echo (!empty($company->facebook)) ? $company->facebook : ''; ?>">
+                </div>
+                <div class="getme field has-label">
+                    <label for="instagram"><i class="fa fa-instagram"></i> Instagram</label>
+                    <input id="instagram" class="form-input" name="instagram" type="text" value="<?php echo (!empty($company->instagram)) ? $company->instagram : ''; ?>">
+                </div>
+                <div class="getme field has-label">
+                    <label for="linkedin"><i class="fa fa-linkedin"></i> LinkedIn</label>
+                    <input id="linkedin" class="form-input" name="linkedin" type="text" value="<?php echo (!empty($company->linkedIn)) ? $company->linkedin : ''; ?>">
+                </div>
+
+                <div id="btn-pair" class="btn-pair">
+                    <button type="reset" class="btn cancel" onclick="block()">Cancelar</button>
+                    <button class="btn send" type="submit" name="action" value="store">Concluir</button>
+                </div>
+            </form>
+        </section>
+        <?php include 'includes/scripts.inc'; ?>
+        <script>block();</script>
+    </body>
+</html>

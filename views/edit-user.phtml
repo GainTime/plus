@@ -1,0 +1,19 @@
+<?php require_once('../models/user.php'); ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php include 'includes/head.inc'; ?>
+        <title>Default</title>
+    </head>
+    <?php include 'includes/header.inc'; ?>
+    <body>
+        <section class="box last">
+            <div class="top-bar">
+                <h2><i class="fa fa-user"></i> Adicionar Usuário</h2>
+            </div>
+            <?php $user = User::one(); ?>
+            <?php include 'includes/user-f.inc'; ?>
+        </section>
+        <?php include 'includes/scripts.inc'; ?>
+    </body>
+</html>

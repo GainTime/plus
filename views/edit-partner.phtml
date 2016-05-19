@@ -1,0 +1,19 @@
+<?php require_once('../models/partner.php'); ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php include 'includes/head.inc'; ?>
+        <title>Default</title>
+    </head>
+    <?php include 'includes/header.inc'; ?>
+    <body>
+        <section class="box last">
+            <div class="top-bar">
+                <h2><i class="fa fa-star-half-o"></i> Editar Parceiro</h2>
+            </div>
+            <?php $partner = Partner::one(); ?>
+            <?php include 'includes/partner-f.inc'; ?>
+        </section>
+        <?php include 'includes/scripts.inc'; ?>
+    </body>
+</html>

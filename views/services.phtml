@@ -1,0 +1,27 @@
+<?php require_once('../models/service.php'); ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php include 'includes/head.inc'; ?>
+        <title>Default</title>
+    </head>
+    <?php include 'includes/header.inc'; ?>
+    <body>
+        <section class="box">
+            <?php Session::msg(); ?>
+            <div class="top-bar">
+                <h1>Serviços</h1>
+                <a href="new-service" class="btn btn-add"><i class="fa fa-plus"></i> Adicionar</a>
+            </div>
+            <table class="table">
+                <tr>
+                    <td>Título</td>
+                    <td>Descrição</td>
+                    <td>Ação</td>
+                </tr>
+                <?php Service::loadAll(); ?>
+            </table>
+        </section>
+        <?php include 'includes/scripts.inc'; ?>
+    </body>
+</html>

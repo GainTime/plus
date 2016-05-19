@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php include 'includes/head.inc'; ?>
+        <title>Default</title>
+    </head>
+    <body>
+        <section class="login last">
+            <form class="s-form login-form" action="../controllers/user_controller" method="post">
+                <div class="field has-label">
+                    <label for="email">E-mail</label>
+                    <input id="email" type="email" name="email">
+                </div>
+                <div class="field has-label">
+                    <label for="password">Senha</label>
+                    <input id="password" type="password" name="password">
+                </div>
+                <button class="btn btn-principal" name="action" value="login"><i class="fa fa-sign-in"></i> Entrar</button>
+            </form>
+        </section>
+        <?php include 'includes/scripts.inc'; ?>
+    </body>
+</html>

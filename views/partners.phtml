@@ -1,0 +1,27 @@
+<?php require_once('../models/partner.php'); ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php include 'includes/head.inc'; ?>
+        <title>Default</title>
+    </head>
+    <?php include 'includes/header.inc'; ?>
+    <body>
+        <section class="box">
+            <?php Session::msg(); ?>
+            <div class="top-bar">
+                <h1>Parceiros</h1>
+                <a href="new-partner" class="btn btn-add"><i class="fa fa-plus"></i> Adicionar</a>
+            </div>
+            <table class="table">
+                <tr>
+                    <td>Nome</td>
+                    <td>Descrição</td>
+                    <td>Ação</td>
+                </tr>
+                <?php Partner::loadAll(); ?>
+            </table>
+        </section>
+        <?php include 'includes/scripts.inc'; ?>
+    </body>
+</html>

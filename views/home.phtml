@@ -1,0 +1,52 @@
+<?php require_once('../models/user.php'); ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php include 'includes/head.inc'; ?>
+        <title>Default</title>
+    </head>
+    <?php include 'includes/header.inc'; ?>
+    <body>
+        <main class="box">
+            <div class="title">
+                <h1>Olá, <?php echo $_SESSION['name']; ?></h1>
+                <div class="back_line"></div>
+            </div>
+            <section class="management-boxes">
+                <a href="projects">
+                    <div class="management-box">
+                        <div class="flex-center">
+                            <i class="fa fa-anchor"></i>
+                            <p>Gerenciar<br>Projetos</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="services">
+                    <div class="management-box">
+                        <div class="flex-center">
+                            <i class="fa fa-cubes"></i>
+                            <p>Gerenciar<br>Serviços</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="partners">
+                    <div class="management-box">
+                        <div class="flex-center">
+                            <i class="fa fa-star-half-o"></i>
+                            <p>Gerenciar<br>Parceiros</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="users">
+                    <div class="management-box">
+                        <div class="flex-center">
+                            <i class="fa fa-users"></i>
+                            <p>Gerenciar<br>Usuários</p>
+                        </div>
+                    </div>
+                </a>
+            </section>
+        </main>
+        <?php include 'includes/scripts.inc'; ?>
+    </body>
+</html>
