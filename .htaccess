@@ -1,7 +1,7 @@
 RewriteEngine on
-ErrorDocument 404 http://www.infojr.com.br/git-github
-ErrorDocument 403 http://www.infojr.com.br/git-github
-ErrorDocument 500 http://www.infojr.com.br/git-github
+#ErrorDocument 404 http://
+#ErrorDocument 403 http://
+#ErrorDocument 500 http://
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.phtml -f
 RewriteRule ^(.*)$ $1.phtml
