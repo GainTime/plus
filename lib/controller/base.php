@@ -1,7 +1,7 @@
 <?php
 /**
- * Important: To use that class and your functions and properties correctly,
- * you will go need to name your Controller's class
+ * Important: To use this class and its functions and properties correctly,
+ * you have to name your Controller's class
  * with the same name of their correspondent Model concatenated to '_controller'.
  * Sample:
  * - Model: User

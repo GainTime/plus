@@ -20,7 +20,7 @@
         const DB_VIEW = '_vw';
 
         /**
-         * Field list that fillable.
+         * Field list wich defines database fillables.
          * The attributes that are mass assignable.
          *
          * @var array
