@@ -19,20 +19,36 @@
          *
          * @var string
          */
-        public $location;
+        public $location = null;
+
+        /**
+         * Stores valid actions to use on system
+         *
+         * It can be overloaded by each controller
+         *
+         */
+        public $actions = ['delete', 'store'];
+
+        /**
+         * Stores required fills to validate actions
+         *
+         * It can be overloaded by each controller
+         *
+         */
+        public $fillneeded = [];
 
         /**
          * Stores the Model class name
-         *
-         * It'll be overloaded to each controller;
          *
          * @var string
          */
         public $model;
 
+        /**
+         * Generic construct for controllers
+         */
         function __construct() {
-            $this->location = $location;
-            $this->model = $model;
+            $this->model = self::get_model(get_called_class());
         }
 
         /**
@@ -42,8 +58,8 @@
          *
          * @return string
          */
-        public static function get_model() {
-            return str_replace('_controller', '', get_called_class());
+        public static function get_model($controller) {
+            return str_replace('_controller', '', $controller);
         }
 
         /**
@@ -53,7 +69,10 @@
          *
          * @return boolean
          */
-        public static function is_valid() {
+        public function is_valid() {
+            foreach ($this->fillneeded as $key) {
+                if (empty($_REQUEST[$key])) return false;
+            }
             return true;
         }
 
@@ -116,5 +135,31 @@
                     header('Location: ../views/index');
                 }
             }
+        }
+
+        /**
+         * Controls what happens on system when an user try to execute an action
+         *
+         * @return void
+         */
+        public static function action() {
+            $postActions = ['login', 'store'];
+            $getActions = ['delete'];
+
+            $controller = get_called_class();
+            $call = new $controller();
+
+            if (isset($_REQUEST['action']) && in_array($_REQUEST['action'], $call->actions)) {
+                if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array($_REQUEST['action'], $postActions) ||
+                $_SERVER['REQUEST_METHOD'] == 'GET' && in_array($_REQUEST['action'], $getActions)) {
+                    $call->$_REQUEST['action']();
+                }
+            } elseif((key($_GET))!==null && in_array(key($_GET), $getActions) && in_array(key($_GET), $call->actions)) {
+                $action = key($_GET);
+                $call->$action();
+            } else {
+                header('Location: ../');
+            }
+
         }
     }

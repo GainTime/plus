@@ -3,7 +3,7 @@
 
     class Project extends \Model\Base {
 
-        public $fillable = ['id', 'title', 'description'];
+        public $fillable = ['title', 'description'];
 
         public static function loadAll() {
             $projects = self::all();

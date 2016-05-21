@@ -3,10 +3,10 @@
 
     class Partner extends \Model\Base {
 
-        public $fillable = ['id', 'name', 'description', 'image'];
+        public $fillable = ['name', 'description', 'image'];
 
         public static function loadAll() {
-            $partners = self::all();
+            $partners = self::all('name ASC');
 
             foreach ($partners as $partner) {
                 echo '

@@ -3,7 +3,7 @@
 
     class User extends \Model\Base {
 
-        public $fillable = ['id', 'name', 'email', 'level'];
+        public $fillable = ['name', 'email', 'level'];
 
         public static function loadAll() {
             $users = self::all('name ASC');
@@ -17,6 +17,7 @@
                             <a href="edit-user?id='.$user->id.'" class="btn-action edit" title="#">
                                 <i class="fa fa-edit fa-lg"></i>
                             </a>
+
                             <a href="" class="btn-action del" onclick="askDelete(
                                 \'o usuário\',
                                 \''.$user->name.'\',
@@ -29,5 +30,4 @@
                 ';
             }
         }
-
     }

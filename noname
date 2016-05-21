@@ -1,0 +1,59 @@
+```php
+
+
+//@var string
+//Seta o sufixo que irá formar o nome das views.
+
+const DB_VIEW = '_vw';
+
+
+// Lista de campos que podem ser preenchidos.
+// @var array
+
+protected $fillable = [];
+
+
+// Construtor dinâmico genérico para os modelos
+//@param array $attributes Lista de campos a serem buscados
+function __construct($attributes) {...}
+
+// MySQL database connection
+// @return object \PDO
+protected static function connect() {...}
+
+Encryptes an inserted Password
+@param  string $password
+@return void
+        private function encryptPass(&$password) {...}
+
+Formats entity's name to search database tables
+@param  boolean $isView [TRUE(default) to search on an view or FALSE to search on an table.]
+@return string
+        protected static function entity($isView = true) {}
+
+Verify credentials for system access
+@return object [Informations about the correspondent user.]
+        public function login() {...}
+
+Querys all lines from the entity's table view
+@param  string $order [Sets the ORDER BY param and sorting to SQL query.]
+@return object
+        protected static function all($order = 'id ASC') {...}
+
+Querys one line from the entity's table view
+@param  integer $id [primary key]
+@return object
+        public static function one($id = null) {...}
+
+Inserts one line in the entity's table
+@return boolean [TRUE on success or FALSE on failure.]
+        public function insert() {...}
+
+Update one line from the entity's table
+@return boolean [TRUE on success or FALSE on failure.]
+        public function update() {...}
+
+Remove one line from the entity's table
+@return boolean [TRUE on success or FALSE on failure.]
+        public function remove() {...}
+```
