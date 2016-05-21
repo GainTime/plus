@@ -20,7 +20,7 @@
         const DB_VIEW = '_vw';
 
         /**
-         * Field list that fillable.
+         * Field list wich defines database fillables.
          * The attributes that are mass assignable.
          *
          * @var array
@@ -32,6 +32,7 @@
          * @param array $attributes [field list for search on database table/view]
          */
         function __construct($attributes) {
+            $this->id = isset($attributes['id']) ? $attributes['id'] : null;
             isset($attributes['password']) ? static::encryptPass($attributes['password']) : true;
             foreach ($attributes as $key => $value) {
                 if(in_array($key, $this->fillable)) {
@@ -151,6 +152,6 @@
         public function remove() {
             $connect = self::connect();
             $stm = $connect->prepare('DELETE FROM `'.self::entity(false).'` WHERE id = '.$this->id);
-            return $stm->execute($attr);
+            return $stm->execute();
         }
     }

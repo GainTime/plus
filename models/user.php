@@ -3,7 +3,7 @@
 
     class User extends \Model\Base {
 
-        public $fillable = ['id', 'name', 'email', 'level'];
+        public $fillable = ['name', 'email', 'level'];
 
         public static function loadAll() {
             $users = self::all('name ASC');

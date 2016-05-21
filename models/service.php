@@ -3,7 +3,7 @@
 
     class Service extends \Model\Base {
 
-        public $fillable = ['id', 'title', 'description', 'image'];
+        public $fillable = ['title', 'description', 'image'];
 
         public static function loadAll() {
             $services = self::all();
