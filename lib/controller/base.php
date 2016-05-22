@@ -128,6 +128,7 @@
                 if ($got) {
                     $_SESSION['id'] = $got->id;
                     $_SESSION['name'] = $got->name;
+                    $_SESSION['level'] = $got->level;
                     $_SESSION['on'] = true;
                     $got = null;
                     header('Location: ../views/home');
@@ -143,8 +144,31 @@
          * @return void
          */
         public function logout() {
+            session_start();
         	session_destroy();
-        	header('Location: ../views/index');
+        	header('Location:'.$this->location);
+        }
+
+        /**
+         * Verify if logged user have permission to access page
+         *
+         * @param  int $key
+         *
+         * @return mixed
+         */
+        public static function pagePermission($key = null) {
+            (self::permission($key)) ? true : header('Location: ../views/home');
+        }
+
+        /**
+         * Verify if logged user have permission to do something
+         *
+         * @param  int $key
+         *
+         * @return boolean
+         */
+        public static function permission($key = null) {
+            return (isset($_SESSION['level']) && $_SESSION['level'] >= $key) ? true : false;
         }
 
         /**
@@ -154,22 +178,26 @@
          */
         public static function action() {
             $postActions = ['login', 'store'];
-            $getActions = ['delete'];
+            $getActions = ['delete', 'logout'];
 
             $controller = get_called_class();
             $call = new $controller();
 
+            if (empty($_SESSION['on'])) {
+                $postActions = ['login'];
+                $getActions = ['logout'];
+            }
+
             if (isset($_REQUEST['action']) && in_array($_REQUEST['action'], $call->actions)) {
+
                 if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array($_REQUEST['action'], $postActions) ||
                 $_SERVER['REQUEST_METHOD'] == 'GET' && in_array($_REQUEST['action'], $getActions)) {
                     $call->$_REQUEST['action']();
                 }
+
             } elseif((key($_GET))!==null && in_array(key($_GET), $getActions) && in_array(key($_GET), $call->actions)) {
                 $action = key($_GET);
                 $call->$action();
-            } else {
-                header('Location: ../');
             }
-
         }
     }

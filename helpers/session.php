@@ -1,28 +1,22 @@
 <?php
-    class Session {
+    require_once('../controllers/session_controller.php');
+
+    class Session extends Session_controller{
 
         /**
          * Verify if an valid login is runing
          *
          * @return void
          */
-        public static function onLine() {
-            isset($_SESSION['on']) ? true : static::logout();
-        }
-
-        /**
-         * Log out the current logged in user
-         *
-         * @return void
-         */
-        public static function logout() {
-        	session_destroy();
-        	header('Location: ../views/index');
+        public static function is_onLine() {
+            if (!isset($_SESSION['on'])) {
+                header('Location: ../controllers/session_controller?logout');
+            }
         }
 
         /**
          * Prints the current session message
-         * 
+         *
          * @return void
          */
         public static function msg() {
@@ -30,16 +24,20 @@
             unset($_SESSION['msg']);
             echo $msg;
         }
+
+        /**
+         * Verify location to active link on menu
+         *
+         * @param  string  $page
+         *
+         * @return boolean
+         */
+        public static function is_active($page) {
+            if (array_pop(explode('/', $_SERVER['REQUEST_URI'])) == $page) {
+                echo ' class="active"';
+            }
+        }
     }
 
     session_start();
-
-    if(isset($_POST['action']) && $_POST['action'] != "login" || !isset($_POST['action'])) Session::onLine();
-
-    $getActions = array('logout');
-
-    if(key($_GET) !== null && in_array(key($_GET), $getActions)) {
-        $command = key($_GET);
-        unset($_GET);
-        Session::$command();
-    }
+    Session::is_onLine();

@@ -10,12 +10,12 @@
         <label id="menu-toggle" for="menu" onclick><i class="fa fa-bars"></i></label>
         <nav class="menu">
             <ul>
-                <a href="home"><li><i class="fa fa-home"></i> Início</li></a>
-                <a href="users"><li><i class="fa fa-user"></i> Usuários</li></a>
-                <a href="projects"><li><i class="fa fa-anchor"></i> Projetos</li></a>
-                <a href="services"><li><i class="fa fa-cubes"></i> Serviços</li></a>
-                <a href="partners"><li><i class="fa fa-star-half-full"></i> Parceiros</li></a>
-                <a href="contact"><li><i class="fa fa-envelope"></i> Contato</li></a>
+                <a href="home"><li<?php Session::is_active('home'); ?>><i class="fa fa-home"></i> Início</li></a>
+                <a href="users"><li<?php Session::is_active('users'); ?>><i class="fa fa-user"></i> Usuários</li></a>
+                <a href="projects"><li<?php Session::is_active('projects'); ?>><i class="fa fa-anchor"></i> Projetos</li></a>
+                <a href="services"><li<?php Session::is_active('services'); ?>><i class="fa fa-cubes"></i> Serviços</li></a>
+                <a href="partners"><li<?php Session::is_active('partners'); ?>><i class="fa fa-star-half-full"></i> Parceiros</li></a>
+                <a href="contact"><li<?php Session::is_active('contact'); ?>><i class="fa fa-envelope"></i> Contato</li></a>
             </ul>
         </nav>
     </header>

@@ -95,7 +95,7 @@
          * @param  string $order [Sets the ORDER BY param and sorting to SQL query.]
          * @return object
          */
-        protected static function all($order = 'id ASC') {
+        public static function all($order = 'id ASC') {
             $connect = self::connect();
             $stm = $connect->query('SELECT * FROM `'.self::entity().'` ORDER BY '.$order);
             $stm->execute();
@@ -153,5 +153,20 @@
             $connect = self::connect();
             $stm = $connect->prepare('DELETE FROM `'.self::entity(false).'` WHERE id = '.$this->id);
             return $stm->execute();
+        }
+
+        /**
+         * Execute any MySQL Query weel-formed
+         *
+         * @param  string $sql [an MySQL Query weel-formed]
+         * @param  array  $attr   [description]
+         *
+         * @return object's array
+         */
+        public function query($sql, $attr = array()) {
+            $connect = self::connect();
+            $stm = $connect->prepare($sql);
+            $stm->execute($attr);
+            return $stm->fetchAll(PDO::FETCH_OBJ);
         }
     }
